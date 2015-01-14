@@ -1,0 +1,55 @@
+﻿<?xml?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>通讯录</title>
+ </head>
+ <body>
+ <form action="__MODULE__/Yg/index" method="get">
+ 关键词：<input type="text" name="keywords"/>
+ 类型：
+ <select name="type">
+ <option value="ygname">员工姓名</option>
+ <option value="id">ID</option>
+ <option value="bmname">部门名称</option>
+ </select><br/>
+ <input type="submit" value="员工查询"/>
+ </form>
+ <form action="__MODULE__/Yg/add" method="post">
+ <input type="submit" value="员工添加"/>
+ </form>
+ <form action="__MODULE__/Bm/index" method="post">
+ <input type="submit" value="部门管理"/>
+ </form>
+ <table border="1" bordercolour="black" width="100%">
+ <tr><th>ID</th><th>员工姓名</th><th>性别</th><th>邮箱</th><th>电话1</th><th>电话2</th><th>QQ</th><th>所属部门</th><th>员工删除</th>
+ 
+<volist name="ulist" id="yg">
+<tr>
+     <td>
+	 <a href="__MODULE__/Yg/edit/id/{$yg['id']}">
+	 {$yg['id']} 
+	 </a>
+	 </td>
+     <td>{$yg['ygname']} </td>
+	 <td>{$yg['sex']}</td>
+	  <td>{$yg['email']}</td>
+	 <td>{$yg['tel1']}</td>
+	 <td>{$yg['tel2']}</td>
+	 <td>{$yg['qq']}</td>
+	 <td>{$yg['bmname']}</td>
+	 <td>
+	 <a href="__MODULE__/Yg/delete/id/{$yg['id']}">
+	 删除
+	 </a>
+	 </td>
+</tr>
+</volist>
+
+</table>
+<div>
+{$page}
+</div><br/>
+ </body>
+</html>

@@ -1,0 +1,43 @@
+<?xml?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>部门表</title>
+ </head>
+ <body>
+ <form action="__MODULE__/Bm/index" method="post">
+ 关键词：<input type="text" name="keywords"/>
+ 类型：
+ <select name="type">
+ <option value="bmname">部门名称</option>
+ <option value="id">ID</option>
+ </select><br/>
+ <input type="submit" value="部门查询"/>
+ </form>
+ <form action="__MODULE__/Bm/add" method="post">
+ <input type="submit" value="部门添加"/>
+ </form>
+ <table border="1" bordercolour="black" width="100%">
+ <tr><th>ID</th><th> 部门名称</th><th>部门地址</th><th>部门删除</th>
+<volist name="ulist" id="bm">
+<tr>
+     <td>
+	 <a href="__MODULE__/Bm/edit/id/{$bm['id']}">
+	 {$bm['id']} 
+	 </a>
+	 </td>
+     <td>{$bm['bmname']} </td>
+	  <td>{$bm['bmadress']} </td>
+	 <td>
+	 <a href="__MODULE__/Bm/delete/id/{$bm['id']}">
+	 删除
+	 </a>
+	 </td>
+</tr>
+</volist>
+</table>
+
+
+ </body>
+</html>
