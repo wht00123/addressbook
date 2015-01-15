@@ -23,6 +23,7 @@ class YgModel extends RelationModel{
 		// array('tel1,tel2',11,'电话位数不对！',1,'length'),
 		
 		 array('qq,tel1,tel2','number','格式不对'),
+		 array('verify' ,'check_verify','验证码错误！',1,'callback'),
 	);
 	 
 	protected $_auto=array(
@@ -34,7 +35,10 @@ class YgModel extends RelationModel{
 	function GetTime(){
 		return date('Y-m-d h:i:s');
 	}
-	
+	function check_verify($code,$id=''){ 
+              $verify = new \Think\Verify(); 
+              return $verify->check($code,$id);
+	}
 	
 	
 }

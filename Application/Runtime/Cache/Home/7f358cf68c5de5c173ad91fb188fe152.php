@@ -6,6 +6,9 @@
   <title>部门表</title>
  </head>
  <body>
+ <form action="/addressbook/index.php/Home/Yg/index" method="post">
+ <input type="submit" value="首页"/>
+ </form>
  <form action="/addressbook/index.php/Home/Bm/index" method="post">
  关键词：<input type="text" name="keywords"/>
  类型：
@@ -15,6 +18,7 @@
  </select><br/>
  <input type="submit" value="部门查询"/>
  </form>
+ 
  <form action="/addressbook/index.php/Home/Bm/add" method="post">
  <input type="submit" value="部门添加"/>
  </form>

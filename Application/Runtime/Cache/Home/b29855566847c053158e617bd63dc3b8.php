@@ -31,6 +31,7 @@
 	 <?php echo ($yg['id']); ?> 
 	 </a>
 	 </td>
+	 </td>
      <td><?php echo ($yg['ygname']); ?> </td>
 	 <td><?php echo ($yg['sex']); ?></td>
 	  <td><?php echo ($yg['email']); ?></td>

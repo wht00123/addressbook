@@ -51,7 +51,7 @@ class YgController extends Controller {
 	   $bm=D('Bm');
 	   $list=$bm->select();
 	   $this->assign('ulist',$list);
-	  
+	   //$this->check_verify(strtolower($verifycode));
 	   $this->display();
 	}
 	function edit(){
@@ -123,4 +123,65 @@ class YgController extends Controller {
 			echo $yg->getError();
 		}
 	}
+	function upimg(){
+		$id=$_GET['id'];
+		$yg=D(Yg);
+		$params=$yg->getById($id);
+		dump($params);
+       // $this->display();
+	}
+	 public function upload() {
+        if (!empty($_FILES)) {
+            //如果有文件上传 上传附件
+            $this->_upload();
+        }
+    }
+    // 文件上传
+    protected function _upload() {
+		$params=$_GET['params'];
+	    dump($_GET['params']);
+		$yg=D('Yg');
+		$paramss=$yg->getByParams($params);
+        $upload = new \Think\Upload();
+        //设置上传文件大小
+        $upload->maxSize            = 3292200;
+        //设置上传文件类型
+        $upload->exts          = array('jpg','gif','png','jpeg');
+        //设置附件上传根目录
+        $upload->rootPath           = './Upload/';
+		//试着附件上传子目录
+		$upload->savePath       = '';
+		//上传文件保存规则，支持数组合字符串方式定义
+		$upload->saveName=array('uniqid','');
+		//自动使用子目录保存上传文件 默认为true
+		$upload->autoSub     =true;
+		//子目录创建方式，采用数组或者字符串方式定义
+		$upload->subName     =array('date','Ymd');
+		
+        //上传文件
+		$info           =  $upload->upload();
+        $model  = M('Photo');
+        //保存当前数据对象
+		
+        $data['image'] = $info['image']['savename'];
+        $data['createtime']    = NOW_TIME;
+		$model->add($data);
+		$image=new \Think\Image();
+		//dump('./Upload/'.$info['image']['savepath'].$info['image']['savename']);
+        $image->open('./Upload/'.$info['image']['savepath'].$info['image']['savename']);
+		$image->thumb(150,150)->save('./Upload/'.$info['image']['savepath'].$info['image']['savename']);
+		$paramss['params']=$image;
+		$yg->save($paramss);
+         /* if ($list !== false) {
+            $this->success('上传图片成功！','../index');
+        } else {
+            $this->error('上传图片失败!');
+        }  */
+    }
+	public function selfverify(){
+          $verify = new \Think\Verify;
+          $verify->entry();
+    } 
+	
+    
 }

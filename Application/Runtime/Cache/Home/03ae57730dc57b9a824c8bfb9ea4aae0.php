@@ -6,12 +6,12 @@
   <title>创建员工</title>
  </head>
  <body>
-
+带*为必填项
 
 <form action="/addressbook/index.php/Home/Yg/insert" method="post">
  
 
-员工姓名：<input type="text" name="ygname"/><br/>
+员工姓名：<input type="text" name="ygname"/>*<br/>
 
 选择部门：
 
@@ -19,15 +19,17 @@
 <?php if(is_array($ulist)): $i = 0; $__LIST__ = $ulist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$bm): $mod = ($i % 2 );++$i;?><option value="<?php echo ($bm['bmname']); ?>">
 <?php echo ($bm['bmname']); ?>
 </option><?php endforeach; endif; else: echo "" ;endif; ?>
-</select><br/>
+</select>*<br/>
 
 QQ：<input type="text" name="qq"/><br/>
-电话1：<input type="text" name="tel1"/><br/>
+电话1：<input type="text" name="tel1"/>*<br/>
 电话2：<input type="text" name="tel2"/><br/>
-邮箱：<input type="text" name="email"/><br/>
+邮箱：<input type="text" name="email"/>*<br/>
 性别：
 男<input type="radio" name="sex" value="男" checked="checked"/>
-女<input type="radio" name="sex" value="女"/><br/>
+女<input type="radio" name="sex" value="女"/>*<br/>
+<IMG onclick="this.src=this.src+'?'+Math.random()" src="/addressbook/index.php/Home/Yg/selfverify" > <br/>
+验证码<input type="text" name="verify"/><br/>
 <input type="submit" value="保存">
 </form>
 
